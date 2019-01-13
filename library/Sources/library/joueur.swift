@@ -1,19 +1,32 @@
 import Foundation 
 
+
+        /* cette struct correspond à la specification fonctionnelle decrite dans JoueurProtocol */
+
 public struct JoueurStruct : JoueurProtocol {
+
+
+    /* declaration des typealias des autres struct utilisées */
+
     public typealias Position = PositionStruct
     public typealias CollectionDeCartes = CollectionDeCartesStruct
     public typealias ChampDeBataille = ChampDeBatailleStruct
     public typealias Carte = CarteStruct
 
-	internal var nomjoueur : String
-    internal var main : CollectionDeCartes
-    internal var royaume : CollectionDeCartes
-    internal var pioche : CollectionDeCartes
-    internal var cimetiere : CollectionDeCartes
-    internal var cdb : ChampDeBataille
 
-    public init(nom: String){
+    /* declaration des données membres de JoueurStruct */
+
+	internal var nomjoueur : String //un joueur possede un nom 
+    internal var main : CollectionDeCartes //un joueur possede une main
+    internal var royaume : CollectionDeCartes //un joueur possede un royaume
+    internal var pioche : CollectionDeCartes //un joueur possede un deck
+    internal var cimetiere : CollectionDeCartes //un joueur possede un cimetiere
+    internal var cdb : ChampDeBataille //un joueur possede un champ de bataille
+
+
+    /* declaration de l'init de JoueurStruct pour creer un objet de ce type */
+
+    public init(nom: String) {
     	self.nomjoueur = nom
     	self.main = CollectionDeCartes()
     	self.cimetiere = CollectionDeCartes()
@@ -21,6 +34,9 @@ public struct JoueurStruct : JoueurProtocol {
     	self.pioche = CollectionDeCartes()
     	self.cdb = ChampDeBataille()
     }
+
+
+    /* declaration des fonctions de JoueurStruct */
 
     public func getNom() -> String {
     	return self.nomjoueur
@@ -80,16 +96,16 @@ public struct JoueurStruct : JoueurProtocol {
                 self.main.ajouterCarteCollection(carte : carte)
             }
         }
-        return self
+        return self //on retourne un joueur avec un deck et une main initialisés pour le debut de la partie
     }
 
     public func estRoiMort(autrejoueur : JoueurStruct) -> Bool {
-    	for carte in self.cimetiere {
+    	for carte in self.cimetiere { // on verifie si son roi n'est pas dans le cimetiere
             if carte.getNomCarte() == "Roi1" || carte.getNomCarte() == "Roi2" {
                 return true
             }
         }
-        for carte in autrejoueur.royaume {
+        for carte in autrejoueur.royaume { // on verifie egalement su'il n'est pas dans le royaume adverse
             if carte.getNomCarte() == "Roi1" || carte.getNomCarte() == "Roi2" {
                 return true
             }
