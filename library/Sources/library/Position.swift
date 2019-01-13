@@ -1,16 +1,31 @@
-import Foundation 
+import Foundation
+
+
+        /* cette struct correspond à la specification fonctionnelle decrite dans PositionProtocol */
 
 public struct PositionStruct : PositionProtocol{
+
+
+    /* declaration des typealias des autres struct utilisées */
+
     public typealias Carte = CarteStruct
 
 	
-	internal var nomposition : NomPosition
-    internal var carte : Carte?
+    /* declaration des données membres de PositionStruct */
+
+	internal var nomposition : NomPosition //une position possede un nom, ici un NomPosition correspond a F1, F2, F3, A1, A2, A3
+    internal var carte : Carte? //une position possede egalement une carte de type optionel, donc un objet de type CarteStruct ou nil (= vide)
+
+
+    /* declaration de l'init de CarteStruct pour creer un objet de ce type */
 
     public init(nom : NomPosition, carte : Carte?) {
         self.nomposition = nom
         self.carte = carte
     }
+
+
+    /* declaration des fonctions de JoueurStruct */
 
     public func getNomPosStr() -> String {
         switch self.nomposition {
@@ -47,11 +62,11 @@ public struct PositionStruct : PositionProtocol{
     }
 
     public func getCarteAdverse() -> Bool {
-        if self.estPositionVide() {
-            return false
+        if let carte = self.getCarte() { // comme il n'est pas precisé quoi renvoyer si la position ne contient pas de carte, on renvoie false
+            return carte.getAppartientJ1()
         }
         else {
-            return self.getCarte()!.getAppartientJ1()
+            return false
         }
         
     }
