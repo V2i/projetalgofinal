@@ -68,7 +68,8 @@ mutating func deployer(joueur: Joueur) -> Bool {
 	if val == 0 {
 		return false
 	}
-	var cartechoisie = main.supprimerCarteCollection(cartes[val-1])
+	var cartechoisie : Carte?
+	(main, cartechoisie) = main.supprimerCarteCollection(carte : cartes[val-1])
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB() 
 	var royaumeJ : CollectionDeCarte
@@ -135,7 +136,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 	itJ2 = cdbJ2.makeIterator()
 	var tabposAtt : [Position]
 	
-	cdbJ2.reinitCartes()
+	cdbJ2 = cdbJ2.reinitCartes()
 
 	while let pos = itPos.next(){
 		tabPos.append(pos)
@@ -224,9 +225,12 @@ mutating func replacer(joueur: Joueur) -> Bool {
 		return false
 	}
 
-	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
+	(royaumeJ, cartemv!) = royaumeJ.sortirCarteCollection()
 	royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
-	ajoutCarteCDB(joueur : joueur, cartechoisie : cartemv)
+	if let cartemv {
+		ajoutCarteCDB(joueur : joueur, cartechoisie : cartemv)
+	}
+	
 	return true
 }
 
