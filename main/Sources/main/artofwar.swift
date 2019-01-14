@@ -6,6 +6,13 @@
 import library
 import Foundation
 
+public typealias Carte = CarteStruct
+public typealias CollectionDeCarte = CollectionDeCartesStruct
+public typealias Position = PositionStruct
+public typealias ChampDeBataille = ChampDeBatailleStruct
+public typealias Joueur = JoueurStruct
+
+
 //Fonction d'interaction avec l'utilisateur. Demande à l'utilisateur d'entrer un entier pour répondre
 // Si il entre 0, il lui sera demander de valider pour quitter le jeu
 // Paramètre en entré: text:String --> contient la question posé à l'utilisateur
