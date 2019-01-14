@@ -71,7 +71,7 @@ mutating func deployer(joueur: Joueur) -> Bool {
 	cartechoisie = main.supprimerCarteCollection(cartes[val-1])
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB() 
-	var royaumeJ : CollectiondeCarte
+	var royaumeJ : CollectionDeCarte
 	royaumeJ = joueur.getRoyaume() 
 	while cdbJ.estPlein(){
 		suppCarteCDB(joueur: joueur)
@@ -156,7 +156,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 		}
 		val = demande(text: "Choix de la carte avec laquelle vous souhaitez attaquer", valMax: j)
 		if val==0 {
-			v = demande(text:"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
+			var v = demande(text:"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
 			if v == 1 {
 				return
 			}
@@ -178,7 +178,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 				print("Aucune cible disponible")
 			}
 			else{
-				val = demande(text : "Choix de la carte que vous souhaitez attaquer", valMax : j)
+				var val = demande(text : "Choix de la carte que vous souhaitez attaquer", valMax : j)
 				if val==0 {
 					v = demande(text :"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
 					if v == 1 {
@@ -197,7 +197,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 
 			}
 		}
-		rep = demande(text: "Voulez-vous poursuivre la phase d'attaque? (0: Non / 1: Oui)",valMax : 1)
+		var rep = demande(text: "Voulez-vous poursuivre la phase d'attaque? (0: Non / 1: Oui)",valMax : 1)
 		if rep == 0{
 			attaque = false
 		}
@@ -249,7 +249,7 @@ mutating func suppCarteCDB(joueur: Joueur)->Carte{
 		}
 			
 	}
-	val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i)
+	var val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i)
 	while val == 0 {
 		print("Vous devez obligatoirement choisir une carte")
 		val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i )
@@ -267,6 +267,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
 	var itPos = ItCDB 
+	var val : Int
 	itPos = cdbJ.makeIterator()
 
 	while let pos = itPos.next(){
@@ -347,8 +348,8 @@ func programmePrincipal(){
 	j2 = Joueur(nom : "2")
 
 	// Initialise la pioche et la main des joueurs
-	j1.initialisationJoueur()
-	j2.initialisationJoueur()
+	j1.initialisationJoueur(numeroJoueur : 1)
+	j2.initialisationJoueur(numeroJoeur : 2)
 
 	// Demande aux joueurs de placer une carte de leur main sur le champ de bataille
 	while !deployer(j1){
@@ -393,7 +394,7 @@ func programmePrincipal(){
 			
 		}
 		if rep == 2{
-			if !deployer(joueurActuel){
+			if !deployer(joueur : joueurActuel){
 				print("Deploiement impossible vous allez pouvoir attaquer")
 				rep = 3
 			}
