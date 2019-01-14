@@ -45,7 +45,7 @@ func demande(text:String, valMax:Int)->Int{
 //----------------------------------------Partie deploiement-----------------------------------------------------------
 // Deployer une carte de la main du joueur sur le champ de bataille si il le peut
 
-mutating func deployer(joueur: Joueur) -> Bool {
+func deployer(joueur: Joueur) -> Bool {
 	if joueur.estMainVide(){
 		return false
 	}
@@ -120,7 +120,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 
 //-------------------------------------------Partie attaque -------------------------------------------------------------------
 
-mutating func attaquer(j1: Joueur, j2: Joueur){
+func attaquer(j1: Joueur, j2: Joueur){
 	var attaque : Bool = true
 	var i : Int 
 	var j : Int 
@@ -220,7 +220,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 //--------------------------------------------------------------------Mouvement --------------------------------------------------------------
 
 //Le joueur replace une carte de son Royaume sur le champ de bataille
-mutating func replacer(joueur: Joueur) -> Bool {
+func replacer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
 	var cartemv : Carte?
 	royaumeJ = joueur.getRoyaume()
@@ -241,7 +241,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 
 
 //Supprime un carte du champ de bataille du joueur
-mutating func suppCarteCDB(joueur: Joueur) -> Carte {
+func suppCarteCDB(joueur: Joueur) -> Carte {
 	var i :Int = 0
 	var tabPos : [Position]
 	var cdbJ : ChampDeBataille
@@ -271,7 +271,7 @@ mutating func suppCarteCDB(joueur: Joueur) -> Carte {
 
 
 //ajoute une carte sur le champ de bataille
-mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
+func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	var i : Int = 0
 	var tabPos : [Position]
 	print("Position disponible:")
