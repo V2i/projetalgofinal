@@ -154,7 +154,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 		j = 0
 		while i < tabPos.count {
 			carteA = tabPos[i].getCarte()!
-			if tabPos[i].getCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
+			if tabPos[i].getCarteAdverse() && tabPos[i].estPositionVide() && carteA.getEstPositionDef(){
 				j = j + 1
 				print(j,":",tabPos[i].getNomPos(), "-->",tabPos[i].getCarte()!.getNomCarte())
 			}
@@ -195,7 +195,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 				cdbJ1.mettrePositionOffensive(pos: position)
 				var cartem : Carte?
 				var c : Carte
-				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1], royaume : royaumeJ1, cimetiere : cimetiereJ1)
+				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubie: tabposAtt[val-1], royaume : royaumeJ1, cimetiere : cimetiereJ1)
 				if let c = cartem{
 					var cimetiere : CollectionDeCarte 
 					cimetiere = j1.getCimetiere()
@@ -230,7 +230,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 
 	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
 	if let carteMV = cartemv {
-		royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
+		royaumeJ = royaumeJ.supprimerCarteCollection(carte : carteMV)
 	}
 	if let carteMV = cartemv {
 		ajoutCarteCDB(joueur : joueur, cartechoisie : carteMV)
