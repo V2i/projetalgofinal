@@ -387,7 +387,7 @@ func programmePrincipal(){
 		}
 		if rep == 0 {
 			print("Le joueur a décidé de quitter la partie")
-			return
+			
 		}
 		if rep == 2{
 			if !deployer(joueurActuel){
@@ -409,7 +409,7 @@ func programmePrincipal(){
 }
 
 
-func main(){
+func main() {
 	programmePrincipal()
 }
 
