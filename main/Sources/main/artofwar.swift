@@ -49,7 +49,7 @@ mutating func deployer(joueur: Joueur) -> Bool {
 	if joueur.estMainVide(){
 		return false
 	}
-	var main : CollectiondeCarte
+	var main : CollectionDeCarte
 	main = joueur.getMain()
 	var itCarte : ItCollection
 	var cartes : [Carte]
@@ -97,6 +97,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	var itPos : ItCDB
 	itPos = cdbJ.makeIterator()
 	var carte : Carte
+	var tabPos : [NomPosition]
 
 	while let pos = itPos.next(){
 		if !pos.getCarteAdverse(){
@@ -132,7 +133,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 	cdbJ2 = j2.getCdB()
 	var itJ2 : ItCDB
 	itJ2 = cdbJ2.makeIterator()
-	var tabposAtt = [Position]
+	var tabposAtt : [Position]
 	
 	cdbJ2.reinitCartes()
 
