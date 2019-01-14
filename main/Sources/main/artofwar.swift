@@ -225,10 +225,10 @@ mutating func replacer(joueur: Joueur) -> Bool {
 		return false
 	}
 
-	(royaumeJ, cartemv!) = royaumeJ.sortirCarteCollection()
+	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
 	royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
-	if let cartemv {
-		ajoutCarteCDB(joueur : joueur, cartechoisie : cartemv)
+	if let carteMV = cartemv {
+		ajoutCarteCDB(joueur : joueur, cartechoisie : carteMV)
 	}
 	
 	return true
