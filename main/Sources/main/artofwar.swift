@@ -242,9 +242,9 @@ mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 	var carteJ : Carte
 	print("Champ de bataille du Joueur", joueur.getNom())
 	for position in tabPos{
-		if !position.estCarteAdverse(){
+		if !position.getCarteAdverse(){
 			i = i + 1
-			carteJ = position.getCarte()
+			carteJ = position.getCarte()!
 			print(i,": Carte",carteJ.getNomCarte(),"en",position.getNomPos())
 		}
 			
@@ -254,7 +254,7 @@ mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 		print("Vous devez obligatoirement choisir une carte")
 		val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i )
 	}
-	carteMV =  cdbJ.enleverCarte(position:tabPos[val-1])
+	var carteMV =  cdbJ.enleverCarte(position:tabPos[val-1])
 	return carteMV
 }
 
@@ -301,7 +301,7 @@ func partieFinit(j1: Joueur, j2: Joueur)->Bool{
 	cdbJ2 = j2.getCdB()
 
 	if cdbJ2.estvideCDB(){
-		if !remplacer(joueur: j2) {
+		if !replacer(joueur: j2) {
 			if !deployer(joueur:j2) {
 				print("Le joueur", j2.getNom(), "a perdu")
     			return true
