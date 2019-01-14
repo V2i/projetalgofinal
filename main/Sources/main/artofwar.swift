@@ -94,7 +94,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	print("Champ de bataille Joueur",joueur.getNom())
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
-	var itPos = ItCDB
+	var itPos : ItCDB
 	itPos = cdbJ.makeIterator()
 	var carte : Carte
 
@@ -124,7 +124,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 	var tabPos : [Position]
 	var cdbJ1 : ChampDeBataille
 	cdbJ1 = j1.getCdB()
-	var itPos = ItCDB
+	var itPos : ItCDB
 	itPos = cdbJ1.makeIterator()
 	var cdbJ2 : ChampDeBataille
 	cdbJ2 = j2.getCdB()
