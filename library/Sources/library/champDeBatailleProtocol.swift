@@ -59,5 +59,5 @@ public protocol ChampDeBatailleProtocol {
     //si la carte du joueur n'a plus de vie elle est alors envoye dans le cimetiere
     // si la carte attaquée n'a plus de vie on la retourne pour l'envoyer au cimetiere
     //modification : a quoi corespond le bool a renvoyer ?
-    mutating func subirattaque(carteA: CarteStruct, posSubie: PositionStruct, royaume : inout CollectionDeCartesStruct, cimetiere : inout CollectionDeCartesStruct)) -> Self
+    mutating func subirattaque(carteA: CarteStruct, posSubie: PositionStruct, royaume : inout CollectionDeCartesStruct, cimetiere : inout CollectionDeCartesStruct) -> Self
 }
