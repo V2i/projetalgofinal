@@ -366,6 +366,7 @@ func programmePrincipal(){
 	print("Debut de la partie")
 	var main : CollectiondeCarte
 	var tmp : Joueur
+	var rep : Int
 	//Debut du tour d'un joueur
 	while !partieF{
 		print("\nAu tour de", joueurActuel.getNom())
