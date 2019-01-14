@@ -191,7 +191,8 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 						return
 					}
 				}
-				cdbJ1.mettrePositionOffensive(pos: carteattaque)
+				let position = Position(nom : carteattaque.getNomPos(), carte : carteattaque)
+				cdbJ1.mettrePositionOffensive(pos: position)
 				var cartem : Carte?
 				var c : Carte
 				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1], royaume : royaumeJ1, cimetiere : cimetiereJ1)
@@ -228,7 +229,9 @@ mutating func replacer(joueur: Joueur) -> Bool {
 	}
 
 	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
-	royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
+	if let carteMV = cartemv {
+		royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
+	}
 	if let carteMV = cartemv {
 		ajoutCarteCDB(joueur : joueur, cartechoisie : carteMV)
 	}
@@ -275,6 +278,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
 	var itPos : ItCDB 
+	var main = joueur.getMain()
 	var val : Int
 	itPos = cdbJ.makeIterator()
 
@@ -290,7 +294,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	while !cartePose{
 		val = demande(text:"Position de deploiement?",valMax: i)
 		if val != 0{	
-			cdbJ.ajouterCarteCDB(carte:cartechoisie, position: tabPos[val-1])
+			cdbJ.ajouterCarteCDB(carte:cartechoisie, position: tabPos[val-1], main : main)
 			cartePose = true	
 		}
 	}
@@ -382,10 +386,10 @@ func programmePrincipal(){
 		print("\nAu tour de", joueurActuel.getNom())
 
 		//Preparation
-		passerCartesModeDefensive(joueurActuel.getCdB())
+		passerCartesModeDefensive(joueurActuel.getCdB())	//fonction a ajouté dans ChampDeBatailleStruct ou JoueurStruct
 		print("Cartes en position defensive")
 
-		(joueurActuel.getMain(), cartepiochee) = joueurActuel.getMain().getFirst()
+		(main, cartepiochee) = joueurActuel.getMain().getFirst()
 
 		// Phase d'action
 		print("Phase d'action")
