@@ -28,7 +28,7 @@ public protocol CollectiondeCarteProtocol : Sequence{
     //post : renvoie la carte que l'on a supprimer de la collection
 	mutating func supprimerCarteCollection(carte : CarteStruct) -> (Self, CarteStruct?)
 
-
+    //modification du protocole, la carte n'était pas renvoyée
     // renvoie la premiere carte ajouter dans la collection et la supprime
     //supprimerCarteCollection : CollectiondeCarteStruct  -> CarteStruct
     //post : renvoie la carte que l'on a supprimer de la collection
@@ -43,12 +43,14 @@ public protocol CollectiondeCarteProtocol : Sequence{
     // crée un itérateur sur la collection pour itérer avec for in. L’itération se fait dans l’ordre d'arrivée des cartes dans la collection
     // makeIterator : CollectiondeCarteStruct -> ItCollection
     func makeIterator() -> ItCollection
-
+    
+    //modification du protocole, la carte n'était pas renvoyée
     //renvoie la 1ere carte de la liste et la supprime de la collection
     //getFirst(): CollectiondeCarteStruct -> CarteStruct
     //post : renvoie la 1ere carte si la collection n'est pas vide
     mutating func getFirst() -> (Self, CarteStruct?)
 
+    //fonction ajoutée au protocole, pas de moyen de comparer deux cartes (swift ne le permet pas)
     //renvoie true si les deux cartes placées en paramètres sont les mêmes, renvoie false sinon
     //comparer : CarteStruct x CarteStruct -> Bool
     func comparer(carte1 : CarteStruct, carte2 : CarteStruct) -> Bool
