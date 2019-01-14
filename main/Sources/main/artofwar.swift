@@ -61,14 +61,14 @@ mutating func deployer(joueur: Joueur) -> Bool {
 		print(i,":",carte.getNomCarte())
 		cartes.append(carte)
 	}
-	val = demande(text:"Quel carte voulez-vous deployer?",valMax:i)
+	var val = demande(text:"Quel carte voulez-vous deployer?",valMax:i)
 	while val == 0 && i > 5{
 		val = demande(text: "Vous devez obligatoirement choisir une carte:",valMax:i)
 	}
 	if val == 0 {
 		return false
 	}
-	cartechoisie = main.supprimerCarteCollection(cartes[val-1])
+	var cartechoisie = main.supprimerCarteCollection(cartes[val-1])
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB() 
 	var royaumeJ : CollectionDeCarte
@@ -154,7 +154,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 			}
 			i = i + 1
 		}
-		val = demande(text: "Choix de la carte avec laquelle vous souhaitez attaquer", valMax: j)
+		var val = demande(text: "Choix de la carte avec laquelle vous souhaitez attaquer", valMax: j)
 		if val==0 {
 			var v = demande(text:"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
 			if v == 1 {
@@ -190,7 +190,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 				var c : Carte
 				cartem = cdbJ2.subirAttaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1])
 				if let c = cartem{
-					var cimetiere : CollectiondeCarte 
+					var cimetiere : CollectionDeCarte 
 					cimetiere = j1.getCimetiere()
 					cimetiere.ajouterCarteCollection(carte: c)
 				}
@@ -214,7 +214,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 
 //Le joueur replace une carte de son Royaume sur le champ de bataille
 mutating func replacer(joueur: Joueur) -> Bool {
-	var royaumeJ : CollectiondeCarte
+	var royaumeJ : CollectionDeCarte
 	var cartemv : Carte
 	royaumeJ = joueur.getRoyaume()
 	if royaumeJ.estvideCollection(){
@@ -293,7 +293,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 
 
 func partieFinit(j1: Joueur, j2: Joueur)->Bool{
-	if j2.estRoiMort(){
+	if j2.estRoiMort(autrejoueur : j1){
 		print("Le joueur", j2.getNom(), "a perdu")
 		return true
 	}
@@ -349,13 +349,13 @@ func programmePrincipal(){
 
 	// Initialise la pioche et la main des joueurs
 	j1.initialisationJoueur(numeroJoueur : 1)
-	j2.initialisationJoueur(numeroJoeur : 2)
+	j2.initialisationJoueur(numeroJoueur : 2)
 
 	// Demande aux joueurs de placer une carte de leur main sur le champ de bataille
-	while !deployer(j1){
+	while !deployer(joueur : j1){
 		print("Deploiement obligatoire")
 	}
-	while !deployer(j2){
+	while !deployer(joueur : j2){
 		print("Deploiement obligatoire")
 	}
 
@@ -365,7 +365,7 @@ func programmePrincipal(){
     var joueurAdverse : Joueur
 	joueurAdverse = j2
 	print("Debut de la partie")
-	var main : CollectiondeCarte
+	var main : CollectionDeCarte
 	var tmp : Joueur
 	var rep : Int
 	//Debut du tour d'un joueur
