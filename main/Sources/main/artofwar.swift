@@ -148,7 +148,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 		j = 0
 		while i < tabPos.count(){
 			carteA = tabPos[i].getCarte()
-			if tabPos[i].estCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
+			if tabPos[i].gettCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
 				j = j + 1
 				print(j,":",tabPos[i].getNomPos(), "-->",tabPos[i].getCarte().getNomCarte())
 			}
@@ -188,7 +188,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 				cdbJ1.mettrePositionOffensive(pos: carteattaque)
 				var cartem : Carte?
 				var c : Carte
-				cartem = cdbJ2.subirAttaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1])
+				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1])
 				if let c = cartem{
 					var cimetiere : CollectionDeCarte 
 					cimetiere = j1.getCimetiere()
@@ -223,7 +223,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 
 	cartemv = royaumeJ.sortirCarteCollection()
 	royaumeJ.supprimerCarteCollection(carte:cartemv)
-	ajoutCarteCDB(joueur: joueur, carte: cartemv)
+	ajoutCarteCDB(joueur : joueur, cartechoisie : cartemv)
 	return true
 }
 
@@ -253,7 +253,7 @@ mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 		print("Vous devez obligatoirement choisir une carte")
 		val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i )
 	}
-	var carteMV =  cdbJ.enleverCarte(position:tabPos[val-1])
+	var carteMV =  cdbJ.enleverCarteCDB(position:tabPos[val-1])
 	return carteMV
 }
 
