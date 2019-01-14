@@ -307,13 +307,13 @@ func partieFinit(j1: Joueur, j2: Joueur)->Bool{
     		}
     	}
     }
-	var piocheJ1 : CollectiondeCarte
+	var piocheJ1 : CollectionDeCarte
 	piocheJ1 = j1.getPioche()
-	var piocheJ2 : CollectiondeCarte 
+	var piocheJ2 : CollectionDeCarte 
 	piocheJ2 = j2.getPioche()
-	var royaumeJ1 : CollectiondeCarte 
+	var royaumeJ1 : CollectionDeCarte 
 	royaumeJ1 = j1.getRoyaume()
-	var royaumeJ2 : CollectiondeCarte 
+	var royaumeJ2 : CollectionDeCarte 
 	royaumeJ2 = j2.getRoyaume()
 
     if piocheJ1.estvideCollection() || piocheJ2.estvideCollection(){
@@ -342,9 +342,9 @@ func programmePrincipal(){
 
 	//Création des joueurs
 	var j1 : Joueur 
-	j1 = Joueur("1")
+	j1 = Joueur(nom : "1")
 	var j2 : Joueur
-	j2 = Joueur("2")
+	j2 = Joueur(nom : "2")
 
 	// Initialise la pioche et la main des joueurs
 	j1.initialisationJoueur()
