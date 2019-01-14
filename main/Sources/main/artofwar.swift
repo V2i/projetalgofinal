@@ -6,7 +6,7 @@
 import library
 import Foundation
 
-public typealias Carte = library.arteStruct
+public typealias Carte = library.CarteStruct
 public typealias CollectionDeCarte = library.CollectionDeCartesStruct
 public typealias Position = library.PositionStruct
 public typealias ChampDeBataille = library.ChampDeBatailleStruct
@@ -74,7 +74,7 @@ mutating func deployer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
 	royaumeJ = joueur.getRoyaume() 
 	while cdbJ.estPlein(){
-		suppCarteCDB(joueur: joueur)
+		var carteMV = suppCarteCDB(joueur: joueur)
 		joueur.getRoyaume(carteMV)
 	}
 
@@ -229,7 +229,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 
 
 //Supprime un carte du champ de bataille du joueur
-mutating func suppCarteCDB(joueur: Joueur)->Carte{
+mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 	var i :Int = 0
 	var tabPos : [Position]
 	var cdbJ = ChampDeBataille
