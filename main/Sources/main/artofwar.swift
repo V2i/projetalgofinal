@@ -6,11 +6,11 @@
 import library
 import Foundation
 
-public typealias Carte = CarteStruct
-public typealias CollectionDeCarte = CollectionDeCartesStruct
-public typealias Position = PositionStruct
-public typealias ChampDeBataille = ChampDeBatailleStruct
-public typealias Joueur = JoueurStruct
+public typealias Carte = library.arteStruct
+public typealias CollectionDeCarte = library.CollectionDeCartesStruct
+public typealias Position = library.PositionStruct
+public typealias ChampDeBataille = library.ChampDeBatailleStruct
+public typealias Joueur = library.JoueurStruct
 
 
 //Fonction d'interaction avec l'utilisateur. Demande à l'utilisateur d'entrer un entier pour répondre
