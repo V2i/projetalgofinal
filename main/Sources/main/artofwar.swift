@@ -340,9 +340,9 @@ func programmePrincipal(){
 
 	//Création des joueurs
 	var j1 : Joueur 
-	j1 = Joueur.init("1")
+	j1 = Joueur("1")
 	var j2 : Joueur
-	j2 = Joueur.init("2")
+	j2 = Joueur("2")
 
 	// Initialise la pioche et la main des joueurs
 	j1.initialisationJoueur()
@@ -408,9 +408,4 @@ func programmePrincipal(){
 	print("Partie finit")
 }
 
-
-func main() {
-	programmePrincipal()
-}
-
-main()
+programmePrincipal()
