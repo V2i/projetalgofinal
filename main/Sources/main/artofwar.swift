@@ -78,8 +78,10 @@ mutating func deployer(joueur: Joueur) -> Bool {
 		var carteMV = suppCarteCDB(joueur: joueur)
 		joueur.getRoyaume(carteMV)
 	}
-
-	ajoutCarteCDB(joueur: joueur, cartechoisie: cartechoisie)
+	if let carteajout = cartechoisie{
+		ajoutCarteCDB(joueur: joueur, cartechoisie: carteajout)
+	}
+	
 	return true
 }
 
