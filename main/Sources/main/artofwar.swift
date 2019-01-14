@@ -412,3 +412,5 @@ func programmePrincipal(){
 func main(){
 	programmePrincipal()
 }
+
+main()
