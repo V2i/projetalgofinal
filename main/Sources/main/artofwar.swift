@@ -90,7 +90,7 @@ func afficherChampDeBataille(j1: Joueur, j2: Joueur){
 
 //Aficher le champ de bataille d'un joueur
 func afficherChampDeBatailleJoueur(joueur:Joueur){
-	var i :Int = 0
+	var i : Int = 0
 	print("Champ de bataille Joueur",joueur.getNom())
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
@@ -128,7 +128,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 	itPos = cdbJ1.makeIterator()
 	var cdbJ2 : ChampDeBataille
 	cdbJ2 = j2.getCdB()
-	var itJ2 = ItCDB
+	var itJ2 : ItCDB
 	itJ2 = cdbJ2.makeIterator()
 	var tabposAtt = [Position]
 	
@@ -247,7 +247,6 @@ mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 			carteJ = position.getCarte()!
 			print(i,": Carte",carteJ.getNomCarte(),"en",position.getNomPos())
 		}
-			
 	}
 	var val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i)
 	while val == 0 {
@@ -266,7 +265,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	print("Position disponible:")
 	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
-	var itPos = ItCDB 
+	var itPos : ItCDB 
 	var val : Int
 	itPos = cdbJ.makeIterator()
 
@@ -348,8 +347,8 @@ func programmePrincipal(){
 	j2 = Joueur(nom : "2")
 
 	// Initialise la pioche et la main des joueurs
-	j1.initialisationJoueur(numeroJoueur : 1)
-	j2.initialisationJoueur(numeroJoueur : 2)
+	j1 = j1.initialisationJoueur(numeroJoueur : 1)
+	j2 = j2.initialisationJoueur(numeroJoueur : 2)
 
 	// Demande aux joueurs de placer une carte de leur main sur le champ de bataille
 	while !deployer(joueur : j1){
