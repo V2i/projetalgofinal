@@ -232,7 +232,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 mutating func suppCarteCDB(joueur: Joueur) -> Carte{
 	var i :Int = 0
 	var tabPos : [Position]
-	var cdbJ = ChampDeBataille
+	var cdbJ : ChampDeBataille
 	cdbJ = joueur.getCdB()
 	var itPos : ItCDB 
 	itPos = cdbJ.makeIterator()
