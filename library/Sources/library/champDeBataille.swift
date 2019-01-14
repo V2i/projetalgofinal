@@ -91,9 +91,9 @@ public struct ChampDeBatailleStruct : ChampDeBatailleProtocol {
         }
     }
 
-    // public func makeIterator() -> ItCDB{
-    //     return ItCDB(cdb : self)
-    // }
+    public func makeIterator() -> ItCDB {
+        return ItCDB(cdb : self)
+    }
 
     public mutating func reinitCartes() -> ChampDeBatailleStruct {
         var index = 0
