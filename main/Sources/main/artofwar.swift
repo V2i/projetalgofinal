@@ -100,7 +100,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 
 	while let pos = itPos.next(){
 		if !pos.getCarteAdverse(){
-			carte = pos.getCarte()
+			carte = pos.getCarte()!
 			tabPos[pos.getNomPos()] = carte.getNomCarte()
 		}
 	}
@@ -123,6 +123,8 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 
 	var tabPos : [Position]
 	var cdbJ1 : ChampDeBataille
+	var royaumeJ1 = j1.getRoyaume()
+	var cimetiereJ1 = j1.getCimetiere()
 	cdbJ1 = j1.getCdB()
 	var itPos : ItCDB
 	itPos = cdbJ1.makeIterator()
@@ -146,11 +148,11 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 		print("Carte qui peuvent attaquer:")
 		i = 0
 		j = 0
-		while i < tabPos.count(){
-			carteA = tabPos[i].getCarte()
+		while i < tabPos.count {
+			carteA = tabPos[i].getCarte()!
 			if tabPos[i].getCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
 				j = j + 1
-				print(j,":",tabPos[i].getNomPos(), "-->",tabPos[i].getCarte().getNomCarte())
+				print(j,":",tabPos[i].getNomPos(), "-->",tabPos[i].getCarte()!.getNomCarte())
 			}
 			i = i + 1
 		}
@@ -166,7 +168,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 			carteattaque = tabPos[val-1]
 			i = 0
 			j = 0
-			while i < tabposAtt[i].count(){
+			while i < tabposAtt[i].count{
 				if tabposAtt[i].estCible(carte: carteattaque){
 					j = j + 1 
 					carteA = tabPos[i]
@@ -188,7 +190,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 				cdbJ1.mettrePositionOffensive(pos: carteattaque)
 				var cartem : Carte?
 				var c : Carte
-				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1])
+				cartem = cdbJ2.subirattaque(carteA: carteattaque.getCarte(), posSubit: tabposAtt[val-1], royaume : royaumeJ1, cimetiere : cimetiereJ1)
 				if let c = cartem{
 					var cimetiere : CollectionDeCarte 
 					cimetiere = j1.getCimetiere()
@@ -215,14 +217,14 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 //Le joueur replace une carte de son Royaume sur le champ de bataille
 mutating func replacer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
-	var cartemv : Carte
+	var cartemv : Carte?
 	royaumeJ = joueur.getRoyaume()
 	if royaumeJ.estvideCollection(){
 		return false
 	}
 
-	cartemv = royaumeJ.sortirCarteCollection()
-	royaumeJ.supprimerCarteCollection(carte:cartemv)
+	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
+	royaumeJ = royaumeJ.supprimerCarteCollection(carte : cartemv)
 	ajoutCarteCDB(joueur : joueur, cartechoisie : cartemv)
 	return true
 }
@@ -270,7 +272,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	itPos = cdbJ.makeIterator()
 
 	while let pos = itPos.next(){
-		if !pos.estCarteAdverse() && pos.estPositionVide(){
+		if !pos.getCarteAdverse() && pos.estPositionVide(){
 			tabPos.append(pos)
 			i = i + 1
 			print(i,":",pos.getNomPos())
@@ -281,7 +283,7 @@ mutating func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	while !cartePose{
 		val = demande(text:"Position de deploiement?",valMax: i)
 		if val != 0{	
-			cdbJ.ajoutCarteCDB(carte:cartechoisie, position: tabPos[val-1])
+			cdbJ.ajouterCarteCDB(carte:cartechoisie, position: tabPos[val-1])
 			cartePose = true	
 		}
 	}
@@ -367,6 +369,7 @@ func programmePrincipal(){
 	var main : CollectionDeCarte
 	var tmp : Joueur
 	var rep : Int
+	var cartepiochee : Carte?
 	//Debut du tour d'un joueur
 	while !partieF{
 		print("\nAu tour de", joueurActuel.getNom())
@@ -375,7 +378,7 @@ func programmePrincipal(){
 		passerCartesModeDefensive(joueurActuel.getCdB())
 		print("Cartes en position defensive")
 
-		joueurActuel.getMain().piocherCarte()
+		(joueurActuel.getMain(), cartepiochee) = joueurActuel.getMain().getFirst()
 
 		// Phase d'action
 		print("Phase d'action")
