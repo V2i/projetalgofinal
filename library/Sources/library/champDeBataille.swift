@@ -180,27 +180,27 @@ public struct ChampDeBatailleStruct : ChampDeBatailleProtocol {
 
 /* declaration de l'iterateur du Champs de Bataille pour parcourir le tableau de position */
 
-// public struct ItCDB : IteratorProtocol {
+public struct ItCDB : IteratorProtocol {
 
-//     fileprivate var indexCourant : Int = 0
-//     fileprivate var positionC : PositionStruct? = nil
-//     fileprivate var cdb : [PositionStruct]
+    fileprivate var indexCourant : Int = 0
+    fileprivate var positionC : PositionStruct? = nil
+    fileprivate var cdb : [PositionStruct]
 
-//     init(cdb : ChampDeBatailleStruct) {
-//         self.cdb = cdb.positionT
-//         positionC = self.cdb[indexCourant]
-//     }
+    init(cdb : ChampDeBatailleStruct) {
+        self.cdb = cdb.positionT
+        positionC = self.cdb[indexCourant]
+    }
 
-//     public mutating func next() -> PositionStruct? {
-//         let tmp = positionC
-//         indexCourant+=1
-//         if indexCourant > 6 {
-//             positionC = nil
-//         }
-//         else {
-//             positionC = self.cdb[indexCourant]
+    public mutating func next() -> PositionStruct? {
+        let tmp = positionC
+        indexCourant+=1
+        if indexCourant > 6 {
+            positionC = nil
+        }
+        else {
+            positionC = self.cdb[indexCourant]
 
-//         }
-//         return tmp
-//     }
-// }
+        }
+        return tmp
+    }
+}

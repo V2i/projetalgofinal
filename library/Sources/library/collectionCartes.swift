@@ -61,7 +61,7 @@ public struct  CollectionDeCartesStruct : CollectiondeCarteProtocol {
     	}
     }
 
-    public func nombreCarteCollection () -> Int{
+    public func nombreCarteCollection() -> Int{
     	return self.cartes.count //on utilise la méthode count sur le tableau de cartes pour connaître le nombre de carte dans la collection
     }
 

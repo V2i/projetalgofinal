@@ -180,7 +180,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 			else{
 				var val = demande(text : "Choix de la carte que vous souhaitez attaquer", valMax : j)
 				if val==0 {
-					v = demande(text :"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
+					var v = demande(text :"Voulez-vous interrompre la phase d'action?(0:Non / 1: Oui)",valMax:1)
 					if v == 1 {
 						return
 					}
@@ -376,13 +376,13 @@ func programmePrincipal(){
 		passerCartesModeDefensive(joueurActuel.getCdB())
 		print("Cartes en position defensive")
 
-		joueurActuel.piocherCarte()
+		joueurActuel.getMain().piocherCarte()
 
 		// Phase d'action
 		print("Phase d'action")
 		main = joueurActuel.getMain()
 
-		if main.nbCartes() == 6{
+		if main.nombreCarteCollection() == 6{
 			print("Vous avez trop de cartes en main, il va falloir deployer une carte")
 			rep = 2
 		}

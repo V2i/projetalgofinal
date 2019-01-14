@@ -1,8 +1,8 @@
 import Foundation
 
 
-public protocol ChampDeBatailleProtocol {
-    //associatedtype ItCDB : IteratorProtocol
+public protocol ChampDeBatailleProtocol : Sequence {
+    associatedtype ItCDB : IteratorProtocol
     //associatedtype CarteStruct : CarteProtocol
     //associatedtype PositionStruct : PositionProtocol
     //associatedtype CollectionDeCartesStruct : CollectiondeCarteProtocol
@@ -40,7 +40,7 @@ public protocol ChampDeBatailleProtocol {
 
     // crée un itérateur sur le champ de bataille pour itérer avec for in. L’itération se fait sur les différentes positions possibles sur le champ de bataille (A1,A2,A3,F1,F2,F3)
     // makeIterator : CDB -> ItCDB
-    //func makeIterator() -> ItCDB
+    func makeIterator() -> ItCDB
 
 
     // Reinitialise tout les degats des cartes

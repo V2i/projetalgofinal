@@ -37,7 +37,7 @@ public protocol CollectiondeCarteProtocol : Sequence{
 	//renvoie le nombre de carte dans la collection
     //nombreCarteCollection : CollectiondeCarteStruct -> int
     //post : renvoie le nombre de cartes contenue dans la collection
-	func nombreCarteCollection () -> Int
+	func nombreCarteCollection() -> Int
 
     
     // crée un itérateur sur la collection pour itérer avec for in. L’itération se fait dans l’ordre d'arrivée des cartes dans la collection
