@@ -5,11 +5,6 @@
 
 import library
 import Foundation
-import carteProtocol
-import champDeBatailleProtocol
-import collectiondeCarteProtocol
-import joueurProtocol
-import positionProtocol
 
 //Fonction d'interaction avec l'utilisateur. Demande à l'utilisateur d'entrer un entier pour répondre
 // Si il entre 0, il lui sera demander de valider pour quitter le jeu
