@@ -148,7 +148,7 @@ mutating func attaquer(j1: Joueur, j2: Joueur){
 		j = 0
 		while i < tabPos.count(){
 			carteA = tabPos[i].getCarte()
-			if tabPos[i].gettCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
+			if tabPos[i].getCarteAdverse() && tabPos[i].estPositionVide() && carteA.estPosDef(){
 				j = j + 1
 				print(j,":",tabPos[i].getNomPos(), "-->",tabPos[i].getCarte().getNomCarte())
 			}
@@ -229,7 +229,7 @@ mutating func replacer(joueur: Joueur) -> Bool {
 
 
 //Supprime un carte du champ de bataille du joueur
-mutating func suppCarteCDB(joueur: Joueur) -> Carte{
+mutating func suppCarteCDB(joueur: Joueur) -> Carte {
 	var i :Int = 0
 	var tabPos : [Position]
 	var cdbJ : ChampDeBataille
