@@ -100,7 +100,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	var itPos : ItCDB
 	itPos = cdbJ.makeIterator()
 	var carte : Carte
-	var tabPos : [NomPosition]
+	var tabPos : [TypedeCarte]
 
 	while let pos = itPos.next(){
 		if !pos.getCarteAdverse(){

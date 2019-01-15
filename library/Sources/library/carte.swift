@@ -50,7 +50,7 @@ public struct CarteStruct : CarteProtocol {
 	
 	/* déclaration des fonctions de CarteStruct */
 
-    public func getNomCarte() -> String {
+    public func getNomCarteStr() -> String {
 		switch self.nomcarte { // On renvoie une chaîne de caractère correspondant au type de la carte grâce à la méthode switch
             case .Roi1 :
                 return "Roi1"
@@ -65,6 +65,11 @@ public struct CarteStruct : CarteProtocol {
          
         }
     }
+
+    public func getNomCarte() -> TypedeCarte{
+        return self.nomcarte
+    }
+
 
     /* Pour les fonctions de type get, on renvoie un membre de l'objet Carte */
     public func getValDef() -> Int {

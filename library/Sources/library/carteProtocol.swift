@@ -23,7 +23,7 @@ public protocol CarteProtocol{
     //renvoie le nom de la Carte
     //getnomCarte : Carte -> TypedeCarte
     //post : renvoie "Roi","Garde","Soldat","Archer" en fonction du type de Carte
-    func getNomCarte() -> String
+    func getNomCarteStr() -> String
 
     //renvoie la valeur défensive de la Carte
     //getvalDef : Carte -> int
