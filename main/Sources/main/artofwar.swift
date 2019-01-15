@@ -55,7 +55,7 @@ func deployer(joueur: Joueur) -> Bool {
 	var cartes : [Carte]
 	itCarte = main.makeIterator()
 	var i : Int = 0
-	var carte : Carte
+	var _ : Carte
 	var royaume = joueur.getRoyaume()
 	while let carte = itCarte.next(){
 		i = i + 1
@@ -76,7 +76,7 @@ func deployer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
 	royaumeJ = joueur.getRoyaume() 
 	while cdbJ.estPlein(){
-		var carteMV = suppCarteCDB(joueur: joueur)
+		let carteMV = suppCarteCDB(joueur: joueur)
 		royaume = royaume.ajouterCarteCollection(carte : carteMV)
 	}
 	if let carteajout = cartechoisie{
@@ -229,6 +229,7 @@ func attaquer(j1: Joueur, j2: Joueur){
 func replacer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
 	var cartemv : Carte?
+	var carterm : Carte?
 	royaumeJ = joueur.getRoyaume()
 	if royaumeJ.estvideCollection(){
 		return false
@@ -236,7 +237,7 @@ func replacer(joueur: Joueur) -> Bool {
 
 	(royaumeJ, cartemv) = royaumeJ.sortirCarteCollection()
 	if let carteMV = cartemv {
-		royaumeJ = royaumeJ.supprimerCarteCollection(carte : carteMV)
+		(royaumeJ, carterm) = royaumeJ.supprimerCarteCollection(carte : carteMV)
 	}
 	if let carteMV = cartemv {
 		ajoutCarteCDB(joueur : joueur, cartechoisie : carteMV)
@@ -300,7 +301,7 @@ func ajoutCarteCDB(joueur: Joueur, cartechoisie: Carte){
 	while !cartePose{
 		val = demande(text:"Position de deploiement?",valMax: i)
 		if val != 0{	
-			cdbJ.ajouterCarteCDB(carte:cartechoisie, position: tabPos[val-1], main : main)
+			cdbJ.ajouterCarteCDB(carte:cartechoisie, position: tabPos[val-1], main : inout main)
 			cartePose = true	
 		}
 	}
