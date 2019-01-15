@@ -248,7 +248,7 @@ func replacer(joueur: Joueur) -> Bool {
 
 
 //Supprime un carte du champ de bataille du joueur
-func suppCarteCDB(joueur: Joueur) -> Carte? {
+func suppCarteCDB(joueur: Joueur) -> Carte {
 	var i :Int = 0
 	var tabPos : [Position]
 	var cdbJ : ChampDeBataille
@@ -272,9 +272,7 @@ func suppCarteCDB(joueur: Joueur) -> Carte? {
 		print("Vous devez obligatoirement choisir une carte")
 		val = demande(text:"Quel carte voulez-vous mettre au Royaume?",valMax:i )
 	}
-	if let carteMV = cdbJ.getCarteCDB(position : tabPos[val - 1]){
-		cdbJ =  cdbJ.enleverCarteCDB(position:tabPos[val-1])
-	}
+	var carteMV =  cdbJ.enleverCarteCDB(position:tabPos[val-1])
 	return carteMV
 }
 
