@@ -76,7 +76,7 @@ func deployer(joueur: Joueur) -> Bool {
 	royaumeJ = joueur.getRoyaume() 
 	while cdbJ.estPlein(){
 		var carteMV = suppCarteCDB(joueur: joueur)
-		joueur.getRoyaume(carteMV)
+		joueur.getRoyaume().ajouterCarteCollection(carte : carteMV)
 	}
 	if let carteajout = cartechoisie{
 		ajoutCarteCDB(joueur: joueur, cartechoisie: carteajout)
@@ -100,7 +100,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	var itPos : ItCDB
 	itPos = cdbJ.makeIterator()
 	var carte : Carte
-	var tabPos : [NomPosition]
+	var tabPos : [String]
 
 	while let pos = itPos.next(){
 		if !pos.getCarteAdverse(){
