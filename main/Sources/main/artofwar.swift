@@ -56,6 +56,7 @@ func deployer(joueur: Joueur) -> Bool {
 	itCarte = main.makeIterator()
 	var i : Int = 0
 	var carte : Carte
+	var royaume = joueur.getRoyaume()
 	while let carte = itCarte.next(){
 		i = i + 1
 		print(i,":",carte.getNomCarte())
@@ -76,7 +77,7 @@ func deployer(joueur: Joueur) -> Bool {
 	royaumeJ = joueur.getRoyaume() 
 	while cdbJ.estPlein(){
 		var carteMV = suppCarteCDB(joueur: joueur)
-		joueur.getRoyaume().ajouterCarteCollection(carte : carteMV)
+		royaume = royaume.ajouterCarteCollection(carte : carteMV)
 	}
 	if let carteajout = cartechoisie{
 		ajoutCarteCDB(joueur: joueur, cartechoisie: carteajout)
@@ -100,7 +101,7 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	var itPos : ItCDB
 	itPos = cdbJ.makeIterator()
 	var carte : Carte
-	var tabPos : [TypedeCarte]
+	var tabPos : [TypedeCarte?]
 
 	while let pos = itPos.next(){
 		if !pos.getCarteAdverse(){
@@ -111,10 +112,10 @@ func afficherChampDeBatailleJoueur(joueur:Joueur){
 	print("Joueur",joueur.getNom())
 	print("\nFront")
 	print("F1    F2    F3")
-	print(tabPos[NomPosition.F1],"  ",tabPos[NomPosition.F2],"  ",tabPos[NomPosition.F3])
+	print(tabPos["F1"],"  ",tabPos["F2"],"  ",tabPos["F3"])
 	print("Arriere")
 	print("A1   A2   A3")
-	print(tabPos[NomPosition.A1],"  ",tabPos[NomPosition.A2],"  ",tabPos[NomPosition.A3])
+	print(tabPos["A1"],"  ",tabPos["A2"],"  ",tabPos["A3"])
 }
 
 
@@ -169,14 +170,14 @@ func attaquer(j1: Joueur, j2: Joueur){
 		}
 		else{
 			var carteattaque : Carte
-			carteattaque = tabPos[val-1]
+			carteattaque = tabPos[val-1].getCarte()
 			i = 0
 			j = 0
-			while i < tabposAtt[i].count{
+			while i < tabposAtt.count{
 				if tabposAtt[i].estCible(carte: carteattaque){
 					j = j + 1 
-					carteA = tabPos[i]
-					print(j,":",tabPos[i].getNomPos(), "-->",carteA.getNomCarte())
+					carteA = tabPos[i].getCarte()
+					print(j,":",tabPos[i].getNomPosStr(), "-->",carteA.getNomCarteStr())
 				}
 				i = i + 1
 			}
