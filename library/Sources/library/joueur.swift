@@ -101,12 +101,12 @@ public struct JoueurStruct : JoueurProtocol {
 
     public func estRoiMort(autrejoueur : JoueurStruct) -> Bool {
     	for carte in self.cimetiere { // on verifie si son roi n'est pas dans le cimetiere
-            if carte.getNomCarte() == "Roi1" || carte.getNomCarte() == "Roi2" {
+            if carte.getNomCarteStr() == "Roi1" || carte.getNomCarteStr() == "Roi2" {
                 return true
             }
         }
         for carte in autrejoueur.royaume { // on verifie egalement su'il n'est pas dans le royaume adverse
-            if carte.getNomCarte() == "Roi1" || carte.getNomCarte() == "Roi2" {
+            if carte.getNomCarteStr() == "Roi1" || carte.getNomCarteStr() == "Roi2" {
                 return true
             }
         }
