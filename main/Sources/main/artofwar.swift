@@ -169,18 +169,23 @@ func attaquer(j1: Joueur, j2: Joueur){
 			}
 		}
 		else{
-			var carteattaque : Carte
-			carteattaque = tabPos[val-1].getCarte()
-			i = 0
-			j = 0
-			while i < tabposAtt.count{
-				if tabposAtt[i].estCible(carte: carteattaque){
-					j = j + 1 
-					carteA = tabPos[i].getCarte()
-					print(j,":",tabPos[i].getNomPosStr(), "-->",carteA.getNomCarteStr())
+			if let carteattaque = tabPos[val-1].getCarte(){
+
+				i = 0
+				j = 0
+					while i < tabposAtt.count{
+					if tabposAtt[i].estCible(carte: carteattaque){
+						j = j + 1 
+						if let newcarte = tabPos[i].getCarte(){
+							print(j,":",tabPos[i].getNomPosStr(), "-->",newcarte.getNomCarteStr())
+						}
+					}
+					i = i + 1
 				}
-				i = i + 1
+
 			}
+
+			
 			if j == 0 {
 				print("Aucune cible disponible")
 			}
