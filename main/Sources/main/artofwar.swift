@@ -229,7 +229,6 @@ func attaquer(j1: Joueur, j2: Joueur){
 func replacer(joueur: Joueur) -> Bool {
 	var royaumeJ : CollectionDeCarte
 	var cartemv : Carte?
-	var carterm : Carte?
 	royaumeJ = joueur.getRoyaume()
 	if royaumeJ.estvideCollection(){
 		return false
@@ -384,7 +383,7 @@ func programmePrincipal(){
     var joueurAdverse : Joueur
 	joueurAdverse = j2
 	print("Debut de la partie")
-	var main : CollectionDeCarte
+	var main = joueurActuel.getMain()
 	var tmp : Joueur
 	var rep : Int
 	var cartepiochee : Carte?
@@ -396,12 +395,10 @@ func programmePrincipal(){
 		passerCartesModeDefensive(joueurActuel.getCdB())	//fonction a ajouté dans ChampDeBatailleStruct ou JoueurStruct
 		print("Cartes en position defensive")
 
-		(main, cartepiochee) = joueurActuel.getMain().getFirst()
+		(main, cartepiochee) = main.getFirst()
 
 		// Phase d'action
 		print("Phase d'action")
-		main = joueurActuel.getMain()
-
 		if main.nombreCarteCollection() == 6{
 			print("Vous avez trop de cartes en main, il va falloir deployer une carte")
 			rep = 2
